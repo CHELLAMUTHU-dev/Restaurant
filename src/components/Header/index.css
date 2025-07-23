@@ -1,0 +1,34 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 50px;
+}
+
+.order-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.cart-container {
+  position: relative;
+}
+.count {
+  background-color: red;
+  position: absolute;
+  top: -20%;
+  right: -20%;
+  border-radius: 100%;
+  padding: 0px 6px 0px 6px;
+}
+
+.count p {
+  color: white;
+  font-size: 15px;
+}
+
+.header-hr {
+  border: 1px solid rgb(235, 226, 226);
+}

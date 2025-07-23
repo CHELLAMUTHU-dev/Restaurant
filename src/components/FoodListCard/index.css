@@ -1,0 +1,88 @@
+.food-details-card {
+  display: grid;
+  grid-template-columns: 0.2fr 12fr 2fr 2fr;
+  gap: 30px;
+  border: 1px solid black;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.red-dot {
+  border: 1px solid red;
+  padding: 3px 5px;
+  align-self: flex-start;
+  background-color: rgb(251, 237, 234);
+}
+
+.green-dot {
+  border: 1px solid green;
+  padding: 3px 5px;
+  align-self: flex-start;
+  background-color: rgb(236, 252, 212);
+}
+
+.food-item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.food-item-details h1 {
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.food-price {
+  color: rgb(80, 82, 83);
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.description {
+  color: rgb(160, 157, 157);
+  font-size: 16px;
+}
+
+.availablity-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.availablity-content div {
+  padding: 5px 15px;
+  background-color: rgb(10, 158, 10);
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  border-radius: 25px;
+  align-items: center;
+  color: white;
+}
+
+.availablity-content div button {
+  border: none;
+  background-color: transparent;
+  color: white;
+}
+
+.custom-available {
+  color: rgba(17, 17, 254, 0.877);
+}
+
+.not-available {
+  color: rgba(228, 17, 17, 0.762);
+}
+
+.calories {
+  align-self: center;
+  color: rgb(242, 188, 8);
+  font-size: 18px;
+}
+
+img {
+  height: 150px;
+  width: 150px;
+}

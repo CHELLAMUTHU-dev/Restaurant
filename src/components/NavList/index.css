@@ -1,0 +1,11 @@
+.active {
+  border-bottom: 2px solid #e60606;
+  padding-bottom: 20px;
+  color: #e60606;
+}
+
+.nav-tab {
+  cursor: pointer;
+  font-size: 20px;
+  padding-top: 20px;
+}
