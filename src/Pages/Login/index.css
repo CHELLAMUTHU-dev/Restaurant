@@ -1,0 +1,7 @@
+.login-route {
+  min-width: 100vh;
+}
+
+.login-route form {
+ place-self: center;
+}
