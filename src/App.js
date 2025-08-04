@@ -1,6 +1,7 @@
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Home from './Pages/Home'
 import Login from './Pages/Login'
+import Cart from './Pages/Cart'
 import ProtectedRoute from './components/ProtectedRoute'
 import './App.css'
 
@@ -9,6 +10,7 @@ const App = () => (
     <Switch>
       <Route exact path="/login" component={Login} />
       <ProtectedRoute exact path="/" component={Home} />
+      <ProtectedRoute exact path="/cart" component={Cart} />
     </Switch>
   </BrowserRouter>
 )

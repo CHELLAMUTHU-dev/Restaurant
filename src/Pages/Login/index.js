@@ -50,8 +50,9 @@ const Login = ({history}) => {
 
   return (
     <div className="login-route">
-      <form onSubmit={fetchApi}>
-        <div>
+      <form onSubmit={fetchApi} className="form">
+        <h1 className="login-heading">Login</h1>
+        <div className="form-group">
           <label htmlFor="username">USERNAME</label>
           <input
             type="text"
@@ -62,7 +63,7 @@ const Login = ({history}) => {
             placeholder="username"
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="password">PASSWORD</label>
           <input
             type="password"
@@ -73,8 +74,8 @@ const Login = ({history}) => {
             placeholder="password"
           />
         </div>
-        <button type="submit">SUBMIT</button>
-        {userData.error && <p style={{color: 'red'}}>{userData.errorMsg}!</p>}
+        <button type="submit">Submit</button>
+        {userData.error && <p style={{color: 'red'}}>* {userData.errorMsg}!</p>}
       </form>
     </div>
   )

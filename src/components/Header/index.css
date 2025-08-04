@@ -8,7 +8,7 @@
 .order-container {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 35px;
   align-items: center;
 }
 
@@ -31,4 +31,20 @@
 
 .header-hr {
   border: 1px solid rgb(235, 226, 226);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logout-btn{
+  background-color: #0aa9f8;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-size: 15px;
+  cursor: pointer;
 }
