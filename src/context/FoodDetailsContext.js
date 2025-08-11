@@ -5,7 +5,7 @@ export const FoodDetails = createContext(null)
 export const FoodDetailProvider = ({children}) => {
   const [restaurantDetails, setRestaurantDetails] = useState({})
   const [menuList, setMenuList] = useState({})
-  const [cartCount, setCartCount] = useState(0)
+  const [cartList, setCartList] = useState([])
 
   useEffect(() => {
     const fetchFoodDetails = async () => {
@@ -68,21 +68,18 @@ export const FoodDetailProvider = ({children}) => {
     fetchFoodDetails()
   }, [])
 
-  const increaseCartCount = () => {
-    console.log('triggeresd')
-    setCartCount(prev => prev + 1)
+  const increaseCartCount = product => {
+    console.log(product.quantity)
   }
 
-  const decreaseCartCount = () => {
-    setCartCount(prev => prev - 1)
-  }
+  const decreaseCartCount = (quantity, foodDetails) => {}
 
   return (
     <FoodDetails.Provider
       value={{
         restaurantDetails,
         menuList,
-        cartCount,
+        cartList,
         increaseCartCount,
         decreaseCartCount,
       }}

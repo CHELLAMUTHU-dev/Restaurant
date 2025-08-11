@@ -6,7 +6,7 @@ import './index.css'
 
 const FoodListCard = props => {
   const {increaseCartCount, decreaseCartCount} = useContext(FoodDetails)
-  const [count, setCount] = useState(0)
+  const [quantity, setQuantity] = useState(0)
   const {foodDetails} = props
   const {
     dishName,
@@ -21,13 +21,16 @@ const FoodListCard = props => {
   } = foodDetails
 
   const increaseHandler = () => {
-    setCount(prev => prev + 1)
-    increaseCartCount()
+    setQuantity(prev => {
+      const newQuantity = prev + 1
+      increaseCartCount({...foodDetails, quantity: newQuantity})
+      return newQuantity
+    })
   }
 
   const decreaseHandler = () => {
-    setCount(prev => prev - 1)
-    decreaseCartCount()
+    setQuantity(prev => prev - 1)
+    decreaseCartCount({...foodDetails, quantity})
   }
 
   return (
@@ -51,11 +54,11 @@ const FoodListCard = props => {
           <div className="availablity-content">
             <div>
               <GoPlus onClick={increaseHandler} />
-              {count}
+              {quantity}
               <button
                 type="button"
                 onClick={decreaseHandler}
-                disabled={count === 0}
+                disabled={quantity === 0}
               >
                 <FaMinus />
               </button>
