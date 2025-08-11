@@ -68,11 +68,27 @@ export const FoodDetailProvider = ({children}) => {
     fetchFoodDetails()
   }, [])
 
-  const increaseCartCount = product => {
-    console.log(product.quantity)
+  const updateCartCount = (product, count) => {
+    setCartList(prev => {
+      const existingIndex = cartList.findIndex(
+        item => item.dishId === product.dishId,
+      )
+      if (existingIndex !== -1) {
+        const updateCart = [...prev]
+        const updateQuantity = updateCart[existingIndex].quantity + count
+        if (updateQuantity <= 0) {
+          updateCart.splice(existingIndex, 1)
+        } else {
+          updateCart[existingIndex] = {
+            ...updateCart[existingIndex],
+            quantity: updateQuantity,
+          }
+        }
+        return updateCart
+      }
+      return [...prev, {...product, quantity: 1}]
+    })
   }
-
-  const decreaseCartCount = (quantity, foodDetails) => {}
 
   return (
     <FoodDetails.Provider
@@ -80,8 +96,7 @@ export const FoodDetailProvider = ({children}) => {
         restaurantDetails,
         menuList,
         cartList,
-        increaseCartCount,
-        decreaseCartCount,
+        updateCartCount,
       }}
     >
       {children}

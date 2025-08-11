@@ -6,13 +6,14 @@ import {FoodDetails} from '../../context/FoodDetailsContext'
 import './index.css'
 
 const Header = ({history}) => {
-  const {restaurantDetails, cartCount} = useContext(FoodDetails)
+  const {restaurantDetails, cartList} = useContext(FoodDetails)
 
   const logoutHandler = () => {
     console.log('triggered')
     Cookies.remove('jwt_token')
     history.replace('/login')
   }
+  const cartCount = cartList.length
 
   return (
     <>

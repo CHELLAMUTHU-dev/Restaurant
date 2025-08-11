@@ -51,7 +51,7 @@
   gap: 10px;
 }
 
-.availablity-content div {
+.cart-btns {
   padding: 5px 15px;
   background-color: rgb(10, 158, 10);
   display: flex;
@@ -85,4 +85,18 @@
 img {
   height: 150px;
   width: 150px;
+}
+
+#add-to-cart {
+  color: white;
+  font-size: 12px;
+  padding: 12px 8px;
+  border-radius: 6px 14px;
+  background-color: #0aa9f8;
+}
+
+.cart-controllers {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
 }

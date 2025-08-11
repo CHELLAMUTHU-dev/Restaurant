@@ -1,14 +1,14 @@
-import {useState, useContext} from 'react'
+import {useContext} from 'react'
 import {FaCircle, FaMinus} from 'react-icons/fa'
 import {GoPlus} from 'react-icons/go'
 import {FoodDetails} from '../../context/FoodDetailsContext'
 import './index.css'
 
 const FoodListCard = props => {
-  const {increaseCartCount, decreaseCartCount} = useContext(FoodDetails)
-  const [quantity, setQuantity] = useState(0)
+  const {cartList, updateCartCount} = useContext(FoodDetails)
   const {foodDetails} = props
   const {
+    dishId,
     dishName,
     dishPrice,
     dishImage,
@@ -20,18 +20,8 @@ const FoodListCard = props => {
     addonCat,
   } = foodDetails
 
-  const increaseHandler = () => {
-    setQuantity(prev => {
-      const newQuantity = prev + 1
-      increaseCartCount({...foodDetails, quantity: newQuantity})
-      return newQuantity
-    })
-  }
-
-  const decreaseHandler = () => {
-    setQuantity(prev => prev - 1)
-    decreaseCartCount({...foodDetails, quantity})
-  }
+  const quantity =
+    cartList.find(eachItem => eachItem.dishId === dishId)?.quantity || 0
 
   return (
     <li className="food-details-card">
@@ -52,15 +42,30 @@ const FoodListCard = props => {
         <p className="description">{dishDescription}</p>
         {dishAvailability ? (
           <div className="availablity-content">
-            <div>
-              <GoPlus onClick={increaseHandler} />
-              {quantity}
+            <div className="cart-controllers">
+              <div className="cart-btns">
+                <button
+                  type="button"
+                  onClick={() => updateCartCount(foodDetails, 1)}
+                >
+                  <GoPlus />
+                </button>
+                {quantity}
+                <button
+                  type="button"
+                  onClick={() => updateCartCount(foodDetails, -1)}
+                  disabled={quantity === 0}
+                >
+                  <FaMinus />
+                </button>
+              </div>
               <button
                 type="button"
-                onClick={decreaseHandler}
+                id="add-to-cart"
                 disabled={quantity === 0}
+                onClick={() => updateCartCount(foodDetails, 0)}
               >
-                <FaMinus />
+                ADD TO CART
               </button>
             </div>
             {addonCat.length !== 0 && (
