@@ -1,6 +1,6 @@
 import {createContext, useState, useEffect} from 'react'
 
-export const FoodDetails = createContext(null)
+export const CartContext = createContext(null)
 
 export const FoodDetailProvider = ({children}) => {
   const [restaurantDetails, setRestaurantDetails] = useState({})
@@ -68,38 +68,72 @@ export const FoodDetailProvider = ({children}) => {
     fetchFoodDetails()
   }, [])
 
-  const updateCartCount = (product, count) => {
-    setCartList(prev => {
-      const existingIndex = cartList.findIndex(
-        item => item.dishId === product.dishId,
+  const removeAllCartItems = () => {
+    setCartList([])
+  }
+  const addCartItem = id => {
+    const existing = cartList.find(eachItem => eachItem.dishId === id)
+    if (existing) {
+      setCartList(prev =>
+        prev.map(eachItem =>
+          eachItem.dishId === id
+            ? {...eachItem, quantity: eachItem.quantity + 1}
+            : eachItem,
+        ),
       )
-      if (existingIndex !== -1) {
-        const updateCart = [...prev]
-        const updateQuantity = updateCart[existingIndex].quantity + count
-        if (updateQuantity <= 0) {
-          updateCart.splice(existingIndex, 1)
-        } else {
-          updateCart[existingIndex] = {
-            ...updateCart[existingIndex],
-            quantity: updateQuantity,
-          }
-        }
-        return updateCart
-      }
-      return [...prev, {...product, quantity: 1}]
-    })
+    } else {
+      const newCartList = menuList
+        .flatMap(each => each.categoryDishes)
+        .find(eachItem => eachItem.dishId === id)
+      setCartList(prev => [...prev, {...newCartList, quantity: 1}])
+    }
+  }
+  const removeCartItem = id => {
+    const filteredList = cartList.filter(eachItem => eachItem.dishId !== id)
+    setCartList(filteredList)
+  }
+  const incrementCartItemQuantity = id => {
+    const existing = cartList.find(eachItem => eachItem.dishId === id)
+    if (existing) {
+      setCartList(prev =>
+        prev.map(item =>
+          item.dishId === id ? {...item, quantity: item.quantity + 1} : item,
+        ),
+      )
+    } else {
+      console.log('No data found')
+    }
+  }
+  const decrementCartItemQuantity = id => {
+    const existing = cartList.find(eachItem => eachItem.dishId === id)
+    if (existing.quantity > 0) {
+      setCartList(prev =>
+        prev.map(each =>
+          each.dishId === id ? {...each, quantity: each.quantity - 1} : each,
+        ),
+      )
+    } else {
+      const filtered = cartList.filter(
+        eachItem => eachItem.dishId !== existing.dishId,
+      )
+      setCartList([filtered])
+    }
   }
 
   return (
-    <FoodDetails.Provider
+    <CartContext.Provider
       value={{
         restaurantDetails,
         menuList,
         cartList,
-        updateCartCount,
+        removeAllCartItems,
+        addCartItem,
+        removeCartItem,
+        incrementCartItemQuantity,
+        decrementCartItemQuantity,
       }}
     >
       {children}
-    </FoodDetails.Provider>
+    </CartContext.Provider>
   )
 }

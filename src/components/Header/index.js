@@ -2,11 +2,11 @@ import {useContext} from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {IoCartOutline} from 'react-icons/io5'
 import Cookies from 'js-cookie'
-import {FoodDetails} from '../../context/FoodDetailsContext'
+import {CartContext} from '../../context/FoodDetailsContext'
 import './index.css'
 
 const Header = ({history}) => {
-  const {restaurantDetails, cartList} = useContext(FoodDetails)
+  const {restaurantDetails, cartList} = useContext(CartContext)
 
   const logoutHandler = () => {
     console.log('triggered')

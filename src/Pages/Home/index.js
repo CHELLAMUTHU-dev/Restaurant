@@ -1,12 +1,12 @@
 import {useContext, useState} from 'react'
-import {FoodDetails} from '../../context/FoodDetailsContext'
+import {CartContext} from '../../context/FoodDetailsContext'
 import Header from '../../components/Header'
 import NavList from '../../components/NavList'
 import FoodList from '../../components/FoodList'
 import './index.css'
 
 const Home = () => {
-  const {menuList} = useContext(FoodDetails)
+  const {menuList} = useContext(CartContext)
   // Safely handle menuList data
   const categories = Array.isArray(menuList)
     ? menuList.map(item => item.menuCategory)

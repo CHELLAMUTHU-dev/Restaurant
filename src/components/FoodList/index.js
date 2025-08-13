@@ -1,12 +1,12 @@
 import {useContext, useState, useEffect} from 'react'
-import {FoodDetails} from '../../context/FoodDetailsContext'
+import {CartContext} from '../../context/FoodDetailsContext'
 import FoodListCard from '../FoodListCard'
 import './index.css'
 
 const FoodList = props => {
   const [dishList, setDishList] = useState([])
   const {activeTab} = props
-  const {menuList} = useContext(FoodDetails)
+  const {menuList} = useContext(CartContext)
 
   useEffect(() => {
     const filteredFoodList = Array.isArray(menuList)

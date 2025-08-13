@@ -1,11 +1,10 @@
 import {useContext} from 'react'
-import {FaCircle, FaMinus} from 'react-icons/fa'
-import {GoPlus} from 'react-icons/go'
-import {FoodDetails} from '../../context/FoodDetailsContext'
+import {FaCircle} from 'react-icons/fa'
+import {CartContext} from '../../context/FoodDetailsContext'
 import './index.css'
 
 const FoodListCard = props => {
-  const {cartList, updateCartCount} = useContext(FoodDetails)
+  const {addCartItem} = useContext(CartContext)
   const {foodDetails} = props
   const {
     dishId,
@@ -19,9 +18,6 @@ const FoodListCard = props => {
     dishType,
     addonCat,
   } = foodDetails
-
-  const quantity =
-    cartList.find(eachItem => eachItem.dishId === dishId)?.quantity || 0
 
   return (
     <li className="food-details-card">
@@ -43,27 +39,12 @@ const FoodListCard = props => {
         {dishAvailability ? (
           <div className="availablity-content">
             <div className="cart-controllers">
-              <div className="cart-btns">
-                <button
-                  type="button"
-                  onClick={() => updateCartCount(foodDetails, 1)}
-                >
-                  <GoPlus />
-                </button>
-                {quantity}
-                <button
-                  type="button"
-                  onClick={() => updateCartCount(foodDetails, -1)}
-                  disabled={quantity === 0}
-                >
-                  <FaMinus />
-                </button>
-              </div>
               <button
                 type="button"
                 id="add-to-cart"
-                disabled={quantity === 0}
-                onClick={() => updateCartCount(foodDetails, 0)}
+                onClick={() => {
+                  addCartItem(dishId)
+                }}
               >
                 ADD TO CART
               </button>
