@@ -5,7 +5,7 @@ import Header from '../../components/Header'
 import {CartContext} from '../../context/FoodDetailsContext'
 import './index.css'
 
-const Cart = () => {
+const Cart = ({history}) => {
   const {
     removeAllCartItems,
     removeCartItem,
@@ -14,12 +14,17 @@ const Cart = () => {
     cartList,
   } = useContext(CartContext)
 
-  // Calculate total price safely
+  // calculat total cart price
+
   const totalPrice = cartList.reduce((total, item) => {
     const itemPrice = Number(item.dishPrice) || 0
     const itemQuantity = Number(item.quantity) || 0
     return total + itemPrice * itemQuantity
   }, 0)
+
+  const redirect = () => {
+    history.replace('/')
+  }
 
   return (
     <div>
@@ -43,8 +48,18 @@ const Cart = () => {
             <img
               src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-empty-cart-img.png"
               alt="Empty cart"
+              className="empty-cart"
             />
-            <p className="empty-cart-message">Your cart is empty</p>
+            <p className="empty-cart-message">
+              Uh Oh! you don&apos;t have any food orders
+            </p>
+            <button
+              type="button"
+              onClick={redirect}
+              className="order-now-button"
+            >
+              Order Now
+            </button>
           </>
         ) : (
           <>

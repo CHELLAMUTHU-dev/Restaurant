@@ -24,7 +24,7 @@ const Header = ({history}) => {
         <div className="order-container">
           <h1>My Orders</h1>
           <Link to="/cart">
-            <div className="cart-container">
+            <div className="header-cart-container">
               <IoCartOutline size={35} />
               <div className="count">
                 <p>{cartCount}</p>

@@ -71,6 +71,18 @@ export const FoodDetailProvider = ({children}) => {
   const removeAllCartItems = () => {
     setCartList([])
   }
+
+  useEffect(() => {
+    const savedCart = localStorage.getItem('cartList')
+    if (savedCart) {
+      setCartList(JSON.parse(savedCart))
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('cartList', JSON.stringify(cartList))
+  }, [cartList])
+
   const addCartItem = id => {
     const existing = cartList.find(eachItem => eachItem.dishId === id)
     if (existing) {
@@ -86,6 +98,7 @@ export const FoodDetailProvider = ({children}) => {
         .flatMap(each => each.categoryDishes)
         .find(eachItem => eachItem.dishId === id)
       setCartList(prev => [...prev, {...newCartList, quantity: 1}])
+      localStorage.setItem('cartList', newCartList)
     }
   }
   const removeCartItem = id => {
