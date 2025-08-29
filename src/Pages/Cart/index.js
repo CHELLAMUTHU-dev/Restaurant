@@ -69,7 +69,10 @@ const Cart = ({history}) => {
                   (Number(item.dishPrice) || 0) * (Number(item.quantity) || 0)
 
                 return (
-                  <li key={`${item.dishId}-${item.dishName}`}>
+                  <li
+                    className="cart-list"
+                    key={`${item.dishId}-${item.dishName}`}
+                  >
                     <img src={item.dishImage} alt={item.dishName} />
                     <div className="item-details">
                       <h2 className="dish-name">{item.dishName}</h2>
@@ -81,7 +84,8 @@ const Cart = ({history}) => {
                     <div className="quantity-controls">
                       <button
                         type="button"
-                        disabled={item.quantity <= 1}
+                        className="minus"
+                        disabled={item.quantity < 1}
                         onClick={() => decrementCartItemQuantity(item.dishId)}
                       >
                         <FaMinus />
@@ -89,6 +93,7 @@ const Cart = ({history}) => {
                       <p className="quantity">{item.quantity}</p>
                       <button
                         type="button"
+                        className="plus"
                         onClick={() => incrementCartItemQuantity(item.dishId)}
                       >
                         <GoPlus />
@@ -96,6 +101,7 @@ const Cart = ({history}) => {
                     </div>
                     <button
                       type="button"
+                      className="remove-btn"
                       onClick={() => removeCartItem(item.dishId)}
                     >
                       Remove

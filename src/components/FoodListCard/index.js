@@ -59,7 +59,7 @@ const FoodListCard = props => {
       </div>
 
       <p className="calories">{dishCalories} Calories</p>
-      <img src={dishImage} alt={dishName} />
+      <img src={dishImage} alt={dishName} className="food-img" />
     </li>
   )
 }

@@ -1,11 +1,18 @@
 .food-details-card {
   display: grid;
-  grid-template-columns: 0.2fr 12fr 2fr 2fr;
   gap: 30px;
+  grid-template-columns: 0.2fr 12fr 2fr 2fr;
   border: 1px solid black;
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .food-details-card {
+    grid-template-columns: 0.2fr 20fr 1fr 0.5fr;
+    gap: 15px;
+  }
 }
 
 .red-dot {
@@ -21,16 +28,36 @@
   align-self: flex-start;
   background-color: rgb(236, 252, 212);
 }
+@media (max-width: 768px) {
+  .red-dot {
+    padding: 3px 3px;
+    font-size: 10px;
+  }
+  .green-dot {
+    padding: 3px 3px;
+    font-size: 10px;
+  }
+}
 
 .food-item-details {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
+@media(max-width:768px){
+  max-width: 150px;
+}
 
 .food-item-details h1 {
   font-size: 23px;
   font-weight: 700;
+  color: #0b3142;
+}
+
+@media (max-width: 768px) {
+  .food-item-details h1 {
+    font-size: 20px;
+  }
 }
 
 .food-price {
@@ -78,13 +105,20 @@
 
 .calories {
   align-self: center;
-  color: rgb(242, 188, 8);
+  color: red;
   font-size: 18px;
 }
+@media (max-width: 768px) {
+  .calories {
+    margin-left: 10px;
+    font-size: 15px;
+  }
+}
 
-img {
+.food-img {
   height: 150px;
   width: 150px;
+  border-radius: 10px;
 }
 
 #add-to-cart {
@@ -95,8 +129,23 @@ img {
   background-color: #0aa9f8;
 }
 
+@media (max-width: 768px) {
+  #add-to-cart {
+    font-size: 10px;
+  }
+}
+
 .cart-controllers {
   display: flex;
   flex-direction: row;
   gap: 50px;
+}
+
+@media (max-width: 768px) {
+  .food-img {
+    height: 90px;
+    width: 90px;
+    align-self: center;
+    border-radius: 10px;
+  }
 }
